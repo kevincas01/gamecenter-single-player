@@ -121,7 +121,7 @@ color:white;}
     .letter-card{ 
         width: 12vw;
         height: 12vw;
-     font-size: 30px;}
+        font-size: 30px;}
  
      .keyboard-letters{
         gap:3px;
@@ -139,9 +139,10 @@ color:white;}
 
     .letter-card.correct{
         
-    width:calc(12vw + 6px);
-    height:calc(12vw + 6px);
-    color:white;}
+        width:calc(12vw + 6px);
+        height:calc(12vw + 6px);
+        color:white;
+}
     
     .letter-card.wrong-place{
         
