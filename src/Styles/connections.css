@@ -3,12 +3,12 @@
     flex-direction: column;
     
     align-items: center;
-
+    position:relative;
     gap:15px;
 }
 
 .connections-container * {
-    width: fit-content;
+    
     margin:0px;
   }
   
@@ -23,17 +23,8 @@
     margin:auto;
 }
 
-.game_start_container{
-    width:500px;
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-    justify-content: none;
-}
 
-.game_start_container div{
-    width:100%;
-}
+
 
 .solved-category{
     
@@ -83,9 +74,7 @@
     border:2px black solid;
 }   
 
-.Toastify__toast-body {
-    text-align: center;
-  }
+
 
 .attempts-remaining{
     display: flex;
@@ -120,7 +109,6 @@
         padding: 2px;
         aspect-ratio: 1 / 1;
     }
-
 
 
 }

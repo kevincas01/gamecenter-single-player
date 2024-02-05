@@ -50,6 +50,15 @@ hr{
   min-height: 100vh;
   height: fit-content;
 
+
+}
+
+.game_start_container{
+  width:500px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
 }
 
 @media screen and (max-width: 500px) {
@@ -60,6 +69,18 @@ hr{
 
   h1{
     font-size: 2em;
+  }
+
+
+  .Toastify__toast-container {
+    position: absolute;
+    margin-top: 20px;
+    margin:auto;
+    left: 50%;
+    width: fit-content;
+    transform: translateX(-50%);
+
+    border-radius: 20px;
   }
 
 }

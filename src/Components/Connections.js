@@ -325,7 +325,6 @@ const Connections = () => {
     }
     return (
 
-        <div className='game'>
     
             <div className='connections-container'>
                 
@@ -415,11 +414,10 @@ const Connections = () => {
                 )}
                 </>
                 )}
-    
-            </div>
-    
+
             <ToastContainer />
         </div>
+    
       )
 }
 

@@ -386,6 +386,18 @@ const Wordle = () => {
         }
         else if(attemptNumber>=5&&!gameWon){
             
+            toast(correctWord, {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                closeButton:false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "dark",
+                transition:Zoom
+            });
             setGameOver(true)
 
         }
@@ -407,12 +419,16 @@ const Wordle = () => {
                     {/* https://www.nytimes.com/2023/08/01/crosswords/how-to-talk-about-wordle.html */}
                     <h2>How to play Wordle</h2>
     
-                    <p>Each guess must be a valid five-letter word.<br/>
-                    The color of a tile will change to show you how close your guess was.<br/>
-                    If the tile turns green, the letter is in the word, and it is in the correct spot.<br/>
-                    If the tile turns yellow, the letter is in the word, but it is not in the correct spot.<br/>
-                    If the tile turns gray, the letter is not in the word.<br/>
-                    A new puzzle is released each day at midnight. Sign up for our daily reminder email.</p>
+                    <div>
+                        <h3>Guess the word in 6 tries.</h3>
+                        <ul>
+                            <li>Each guess must be a valid five-letter word.</li>
+                            <li>The color of a tile will change to show you how close your guess was.</li>
+                        </ul>
+                    </div>
+                    <p>If the tile turns green, the letter is in the word, and it is in the correct spot.</p>
+                    <p>If the tile turns yellow, the letter is in the word, but it is not in the correct spot.</p>
+                    <p>If the tile turns gray, the letter is not in the word.</p>
                     <button onClick={startWordleGame}>Start Wordle Game!</button>
                 </div>
             :(
