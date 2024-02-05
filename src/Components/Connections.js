@@ -331,7 +331,6 @@ const Connections = () => {
                 
                 <h1>Connnections</h1>
                
-                <p>Create four groups of four!</p>
     
                 {!gameStart?(
                 <div className='game_start_container'>

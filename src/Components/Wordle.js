@@ -384,8 +384,8 @@ const Wordle = () => {
                 transition:Zoom
             });
         }
-        
-        else if(attemptNumber>5&&!gameWon){
+        else if(attemptNumber>=5&&!gameWon){
+            
             setGameOver(true)
 
         }
@@ -422,7 +422,7 @@ const Wordle = () => {
                 <GameWonModal open={gameOverModal} closeModal={closeModal} reset={handleReset}/>
             ) : (
                 gameOver && !gameWon ? (
-                    <GameLostModal  reset={handleReset}/>
+                    <GameLostModal  open={gameOverModal} closeModal={closeModal} reset={handleReset}/>
                 ) : (
                     <></>
                 )
