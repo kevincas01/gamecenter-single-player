@@ -5,8 +5,9 @@ import { ToastContainer, toast ,Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useParams } from 'react-router-dom';
-import Wordle from './Wordle';
+
 import Connections from './Connections';
+import Wordle from './Wordle';
 
 
 function GameCenter() {
@@ -23,7 +24,6 @@ function GameCenter() {
 
     const chooseGame = (game) => {
       setGameChosen(game);
-      console.log("Gameee", game);
     };
     
   
@@ -46,7 +46,7 @@ function GameCenter() {
 
           <div className='game_chosen'>
               
-               {games[gameChosen]} 
+              {games[gameChosen]} 
 
           </div>
 

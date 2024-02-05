@@ -115,8 +115,6 @@ const Connections = () => {
         };
     }, [gameOver,gameWon]);
 
-    console.log(wordsTakenOut)
-    console.log(gameWords)
     const startConnectionsGame=()=>{
         
         const index = Math.floor(Math.random() * CONNECTION_GAMES.length);
@@ -322,7 +320,7 @@ const Connections = () => {
     }
 
     const closeModal=()=>{
-        console.log("closing")
+        
         setGameOverModal(false)
     }
     return (

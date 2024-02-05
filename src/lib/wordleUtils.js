@@ -16,6 +16,12 @@ export const checkWrongPlacement=(letterCounts, currentWord, letter,position)=>{
    
 }
 
+export const checkCorrect=(correctWord,word)=> {
+  const wordString = word.join(''); // Convert array of strings into a single string
+ 
+  return wordString.toUpperCase() === correctWord.toUpperCase();
+}
+
 export const generateWordSet = async () => {
     let wordSet;
     let currWord;
