@@ -12,10 +12,11 @@ export const checkIfCorrect=(gameSolution,currentSubmission)=>{
     let isGuessOneAway = false;
     let correctDifficulty = null;
     const differencesOfArrays = [];
-    for (let i = 0; i < gameSolution.length; i++) {
-        correctWords = gameSolution[i].words;
-        correctCategory = gameSolution[i].category;
-        correctDifficulty = gameSolution[i].difficulty;
+    
+    for (let i = 0; i < gameSolution.answers.length; i++) {
+        correctWords = gameSolution.answers[i].words;
+        correctCategory = gameSolution.answers[i].group;
+        correctDifficulty = gameSolution.answers[i].level;
 
         const length=differenceOfArrays(correctWords,currentSubmission).length
         if(length===0){
@@ -35,7 +36,7 @@ export const checkIfCorrect=(gameSolution,currentSubmission)=>{
     }
 
     const minDifference=Math.min(...differencesOfArrays)
-    
+    console.log(minDifference)
     if(minDifference===1){
         isGuessOneAway = true;
       
