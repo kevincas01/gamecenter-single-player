@@ -69,6 +69,7 @@ h1{
     background-color: #d3d6da;
     font-weight: bolder;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .keyboard-letter.special { 

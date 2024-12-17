@@ -1,85 +1,132 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
 
-body{
-  margin:0;
-  font-family: 'Poppins', sans-serif;
-  
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-button{
-  all:unset;
+button {
+  all: unset;
   display: flex;
-  
+
   justify-content: center;
-  padding:10px;
+  padding: 10px;
 
   border-radius: 25px;
-  
-  border:3px solid cyan;
+  cursor: pointer;
 }
 
-
-hr{
-  width: 100%;
-}
-
-.gamecenter_container{
+.gamecenter_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  min-height: 100vh;
 }
-.gamecenter_players{
+.gamecenter_players {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap:25px;
+  gap: 25px;
 }
 
-.choose_games_container{
-  margin: 20px 0px;
+.choose_games_container {
+  width: 100%;
+  padding: 20px 0px;
   display: flex;
   justify-content: center;
-  gap:25px;
+  gap: 25px;
+  border-bottom: 1px solid black;
 }
 
-.game_chosen{
+.game_button {
+  padding: 10px;
+  border-radius: 0;
+}
+.game_button.selected {
+  border-bottom: 2px cyan solid;
+}
+.game_chosen {
   width: 100%;
-  min-height: 100vh;
+
   height: fit-content;
-
-
+  flex-grow: 1;
 }
 
-.game_start_container{
-  width:500px;
+.game_start_container {
+  width: 500px;
   height: fit-content;
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
 }
 
 @media screen and (max-width: 500px) {
-  .game_start_container{
-      width: 90%;
+  .game_start_container {
+    width: 90%;
   }
 
-
-  h1{
+  h1 {
     font-size: 2em;
   }
-
 
   .Toastify__toast-container {
     position: absolute;
     margin-top: 20px;
-    margin:auto;
+    margin: auto;
     left: 50%;
     width: fit-content;
     transform: translateX(-50%);
-
+    color: white;
     border-radius: 20px;
   }
+}
 
+/* button{all:unset} */
+.carousal-container {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-buttons {
+  width: 100%;
+  
+}
+.card-button {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.card-button#left {
+  top: 50%;
+  left: 0px;
+}
+.card-button#right {
+  top: 50%;
+  right: 0px;
+}
+.carousal-cards {
+  margin: auto;
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  gap: 10px;
+  overflow-x: hidden;
+  align-items: center;
+  /* padding-right: 100vw; */
+}
+.extra-margin {
+  margin-right: 100vw;
+}
+.carousal-card {
+  height: fit-content;
+  min-width: 100%;
+}
+#left,#right{
+  font-size: 40px;
 }

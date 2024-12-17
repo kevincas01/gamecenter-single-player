@@ -57,8 +57,9 @@
     font-weight: bolder;
     width:150px;
     height:80px;
+    cursor: pointer;
 }
-.selected{
+.card.selected{
     background-color: rgb(59, 57, 57);
     color:white;
 }
