@@ -17,7 +17,6 @@ import GameWonModal from "./Modals/GameWonModal";
 import GameLostModal from "./Modals/GameLostModal";
 
 const SolvedCard = ({ solvedCategory }) => {
-    console.log(solvedCategory)
   return (
     <div
       className="solved-category"
@@ -73,7 +72,7 @@ const Connections = () => {
     if (!gameOver) {
       return;
     }
-  
+
     // extra delay for game won to allow confetti to show
     const modalDelay = gameWon ? 2000 : 4000;
     const delayModalOpen = window.setTimeout(() => {
@@ -81,24 +80,20 @@ const Connections = () => {
       // unmount confetti after modal opens
       // setShowConfetti(false);
     }, modalDelay);
-  
+
     // Define a recursive function to process each group with a delay
     const showCorrectAnswers = (currentIndex) => {
-      console.log(currentIndex);
-    
+
       // Base case: stop recursion when all groups have been processed
       if (currentIndex >= gameSolution.answers.length) {
-        console.log('finished processing');
         return;
       }
-  
+
       const currentSolution = gameSolution.answers[currentIndex];
 
-  
       // Check if the group has already been solved
       if (!solvedCategories.includes(currentSolution.level)) {
         // Process the current group
-        console.log(currentSolution.level)
         setWordsTakenOut((prevWordsTakenOut) => [
           ...prevWordsTakenOut,
           ...currentSolution.words,
@@ -107,7 +102,7 @@ const Connections = () => {
           ...prevSolvedCategories,
           currentSolution.level,
         ]);
-  
+
         // Call the function recursively to process the next group after a delay of 1 second
         setTimeout(() => {
           showCorrectAnswers(currentIndex + 1);
@@ -117,18 +112,17 @@ const Connections = () => {
         showCorrectAnswers(currentIndex + 1);
       }
     };
-  
+
     // Start processing groups from index 0
     setTimeout(() => {
       showCorrectAnswers(0);
     }, 500);
-  
+
     // Return a cleanup function to clear the timeout and interval
     return () => {
       clearTimeout(delayModalOpen);
     };
   }, [gameOver]);
-  
 
   const startConnectionsGame = () => {
     const index = Math.floor(Math.random() * CONNECTION_GAMES.length);
@@ -167,8 +161,11 @@ const Connections = () => {
 
   const shuffleWords = (e) => {
     e.preventDefault();
-    const shuffledWords = shuffleArray(gameWords);
-    setGameWords((prevGameWords) => [...shuffledWords]);
+
+    setGameWords((prevGameWords) => {
+      const shuffledWords = shuffleArray(prevGameWords);
+      return [...shuffledWords];
+    });
   };
 
   const handleSubmit = (e) => {
@@ -284,7 +281,6 @@ const Connections = () => {
     }
   };
 
-  console.log(solvedCategories)
   const handleReset = () => {
     setAttemptsLeft();
     setGameWon(false);

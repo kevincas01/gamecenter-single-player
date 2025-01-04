@@ -36,7 +36,7 @@ export const checkIfCorrect=(gameSolution,currentSubmission)=>{
     }
 
     const minDifference=Math.min(...differencesOfArrays)
-    console.log(minDifference)
+
     if(minDifference===1){
         isGuessOneAway = true;
       
