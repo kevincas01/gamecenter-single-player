@@ -39,6 +39,8 @@ const Wordle = () => {
     ["", "", "", "", ""],
   ]);
 
+  const[boardGuessesState, setBoardGuessesState] = React.useState([]);
+
   const [attemptNumber, setAttemptNumber] = React.useState(0);
   const [positionNumber, setPositionNumber] = React.useState(0);
 
@@ -74,7 +76,7 @@ const Wordle = () => {
   };
 
   const handleLetterSelect = (keyVal) => {
-    if (positionNumber === 5 || attemptNumber > 5) return;
+    if (positionNumber === 5 || attemptNumber > 5 || gameOver) return;
     setBoardState((prevBoardState) => {
       const newBoard = [...prevBoardState];
       newBoard[attemptNumber][positionNumber] = keyVal;
@@ -109,7 +111,7 @@ const Wordle = () => {
       ["", "", "", "", ""],
       ["", "", "", "", ""],
     ]);
-
+    setBoardGuessesState([])
     setGameWon(false);
     setGameOver(false);
     setGameOverModal(false);
@@ -158,18 +160,10 @@ const Wordle = () => {
     let correct;
     let wrongPlace;
 
+    let currentGuessState=[]
     for (let i = 0; i < word.length; i++) {
       let state = "";
-      if (word[i] in newSet) {
-        if (newSet[word[i]] === "wrong-place") {
-          state =
-            word[i].toUpperCase() === correctWord[i].toUpperCase()
-              ? "correct"
-              : "wrong-place";
-          newSet[word[i]] = state;
-        }
-        continue;
-      }
+      
       correct = word[i].toUpperCase() === correctWord[i].toUpperCase();
 
       wrongPlace = checkWrongPlacement(
@@ -181,13 +175,28 @@ const Wordle = () => {
       );
 
       state = correct ? "correct" : wrongPlace ? "wrong-place" : "wrong";
+      currentGuessState.push(state)
 
+      if (word[i] in newSet) {
+        if (newSet[word[i]] === "wrong-place") {
+          state =
+            word[i].toUpperCase() === correctWord[i].toUpperCase()
+              ? "correct"
+              : "wrong-place";
+          newSet[word[i]] = state;
+        }
+        continue;
+      }
       newSet[word[i]] = state; // Update the state for the current letter
     }
+    setBoardGuessesState(prevBoardGuessesState=>{
+      const newBoardGuessesState=[...prevBoardGuessesState,currentGuessState]
+      return newBoardGuessesState
+    })
 
     setLetterSetUsed(newSet);
 
-    setPositionNumber((prevNumber) => 0);
+    setPositionNumber(0);
     setAttemptNumber((prevNumber) => prevNumber + 1);
     const gameWon = checkCorrect(correctWord, word);
     if (gameWon) {
@@ -261,6 +270,7 @@ const Wordle = () => {
           value={{
             boardState,
             setBoardState,
+            boardGuessesState,
             correctWord,
             correctWordLetterCount,
             attemptNumber,
@@ -283,7 +293,10 @@ const Wordle = () => {
             <GameLostModal
               open={gameOverModal}
               closeModal={closeModal}
+              correctWord={correctWord}
               reset={handleReset}
+              guesses={boardGuessesState}
+              gameType={"wordle"}
             />
           ) : (
             <></>
