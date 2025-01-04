@@ -3,12 +3,8 @@ import { checkWrongPlacement } from "../../../lib/wordleUtils";
 import { BoardContext } from "../../Wordle";
 
 const LetterCard = ({ attemptNum, letterPosition }) => {
-  const {
-    boardState,
-    correctWord,
-    correctWordLetterCount,
-    attemptNumber,
-  } = useContext(BoardContext);
+  const { boardState, correctWord, correctWordLetterCount, attemptNumber } =
+    useContext(BoardContext);
 
   const [keyState, setKeyState] = useState("");
 
@@ -20,16 +16,25 @@ const LetterCard = ({ attemptNum, letterPosition }) => {
       return ""; // Remain constant for non-current attempts
     }
 
-    const correct = letter.toUpperCase() === correctWord[letterPosition].toUpperCase();
+    const correct =
+      letter.toUpperCase() === correctWord[letterPosition].toUpperCase();
     const wrongPlace = checkWrongPlacement(
       correctWordLetterCount,
       boardState[attemptNum],
       letter,
-      letterPosition
+      letterPosition,
+      correctWord
     );
 
     return correct ? "correct" : wrongPlace ? "wrong-place" : "wrong";
-  }, [letter, attemptNum, attemptNumber, correctWord, correctWordLetterCount, boardState[attemptNum]]);
+  }, [
+    letter,
+    attemptNum,
+    attemptNumber,
+    correctWord,
+    correctWordLetterCount,
+    boardState[attemptNum],
+  ]);
 
   // Only update `keyState` when the calculated state changes
   useEffect(() => {

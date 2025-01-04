@@ -176,7 +176,8 @@ const Wordle = () => {
         correctWordLetterCount,
         word,
         word[i],
-        i
+        i,
+        correctWord
       );
 
       state = correct ? "correct" : wrongPlace ? "wrong-place" : "wrong";
