@@ -10,7 +10,7 @@ export const checkWrongPlacement = (
   let letterCount = letterCounts[letter.toUpperCase()] || 0; // Get the letter count from correctWord
   if(!letterCount)return false
   for (let i = 0; i < correctWord.length; i++) {
-    if (correctWord[i]?.toUpperCase() === currentWord[i].toUpperCase()) {
+    if (correctWord[i]?.toUpperCase() === currentWord[i].toUpperCase() && correctWord[i]?.toUpperCase() ===letter.toUpperCase()) {
       letterCount -= 1;
     }
   }
