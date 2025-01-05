@@ -1,15 +1,71 @@
-import React from 'react'
-import BaseModal from './BaseModal'
+import React from "react";
+import BaseModal from "./BaseModal";
 
-const GameWonModal = ({ open,closeModal, reset }) => {
+const GameWonModal = ({
+  open,
+  closeModal,
+  reset,
+  correctWord,
+  guesses,
+  gameType,
+}) => {
+  if (!open) return null;
+  const displayGameResults = () => {
+    switch (gameType) {
+      case "wordle":
+        return (
+          <div className="modal-content">
+            <p className="result-message">
+              The correct word was:{" "}
+              <span className="highlight">{correctWord}</span>
+            </p>
+            <p>Your Guesses:</p>
+            <div className="guesses-grid">
+              {guesses.map((guessRow, rowIndex) => (
+                <div key={rowIndex} className="guess-row">
+                  {guessRow.map((state, cellIndex) => (
+                    <div
+                      key={cellIndex}
+                      className={`wordle-guess-cell ${state}`}
+                      title={state} // Tooltip for state
+                    ></div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case "connections":
+        return (
+          <div className="modal-content">
+            <p>Your Guesses:</p>
+            <div className="guesses-grid">
+              {guesses.map((guessRow, rowIndex) => (
+                <div key={rowIndex} className="guess-row">
+                  {guessRow.map((guess, cellIndex) => (
+                    <div
+                      key={cellIndex}
+                      className={`connections-guess-cell level${guess.level}`}
+                      title={guess.level} // Tooltip for state
+                    ></div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+    }
+  };
   return (
-    open ? (
-      <BaseModal title="Perfect" close={closeModal}>
-        <p>great jobbb</p>
-        <button onClick={reset}>Reset the gamee</button>
-      </BaseModal>
-    ) : null
+    <BaseModal title="You Lost :{" close={closeModal}>
+      {displayGameResults()}{" "}
+      <div className="modal-actions">
+        <button className="btn reset-btn" onClick={reset}>
+          Reset Game
+        </button>
+      </div>
+    </BaseModal>
   );
 };
 
-export default GameWonModal
+export default GameWonModal;

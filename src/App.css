@@ -22,6 +22,9 @@ button {
   justify-content: center;
   padding: 10px;
 
+  border: 2px solid black;
+  color: black;
+  background-color: white;
   border-radius: 25px;
   cursor: pointer;
 }

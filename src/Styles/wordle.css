@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.wordle-container * {
+.game_start_container * {
   margin: 0px;
 }
 
@@ -106,10 +106,6 @@ h1 {
 
 .view-results {
   margin-top: 25px;
-}
-.view-results {
-  border: 2px solid black;
-  color: black;
 }
 
 @media screen and (max-width: 430px) {

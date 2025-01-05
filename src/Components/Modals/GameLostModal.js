@@ -1,7 +1,6 @@
 import React from "react";
 import BaseModal from "./BaseModal";
 import "../../Styles/modals.css";
-import { emojiTiles, getEmojiTiles } from "../../lib/connectionsUtils";
 
 const GameLostModal = ({
   open,
@@ -40,7 +39,6 @@ const GameLostModal = ({
       case "connections":
         return (
           <div className="modal-content">
-            <p className="result-message">Connections Game Results! </p>
             <p>Your Guesses:</p>
             <div className="guesses-grid">
               {guesses.map((guessRow, rowIndex) => (
@@ -66,7 +64,6 @@ const GameLostModal = ({
         <button className="btn reset-btn" onClick={reset}>
           Reset Game
         </button>
-        <button className="btn share-btn">Share Results</button>
       </div>
     </BaseModal>
   );

@@ -25,12 +25,23 @@
   text-align: center;
   flex-direction: column;
 }
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
 .close-modal {
   color: black;
   position: absolute;
   right: 10px;
   top: 10px;
+}
+.modal-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media screen and (max-width: 768px) {
   .modal {
@@ -44,7 +55,6 @@
   flex-direction: column;
   gap: 2px;
   align-items: center;
-  margin: 15px 0;
 }
 
 /* Row of guesses */
