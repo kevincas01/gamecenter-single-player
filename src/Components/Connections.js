@@ -20,7 +20,7 @@ const SolvedCard = ({ solvedCategory }) => {
   return (
     <div
       className="solved-category"
-      style={{ backgroundColor: DIFFICULTIES[solvedCategory.level] }}
+      style={{ backgroundColor: `var(${DIFFICULTIES[solvedCategory.level]})` }}
     >
       <p style={{ fontSize: "18px", textAlign: "center" }}>
         <span>{solvedCategory.group}</span>
@@ -40,7 +40,7 @@ const Card = ({ word, selected, handleClick }) => {
         handleClick();
       }}
     >
-      {word}
+      {word.word}
     </div>
   );
 };
@@ -62,12 +62,6 @@ const Connections = () => {
 
   const [gameWords, setGameWords] = React.useState([]);
 
-  const [wordsTakenOut, setWordsTakenOut] = React.useState([]);
-
-  React.useEffect(() => {
-    const newWords = differenceOfArrays(gameWords, wordsTakenOut);
-    setGameWords(newWords);
-  }, [wordsTakenOut]);
   React.useEffect(() => {
     if (!gameOver) {
       return;
@@ -83,7 +77,6 @@ const Connections = () => {
 
     // Define a recursive function to process each group with a delay
     const showCorrectAnswers = (currentIndex) => {
-
       // Base case: stop recursion when all groups have been processed
       if (currentIndex >= gameSolution.answers.length) {
         return;
@@ -94,10 +87,11 @@ const Connections = () => {
       // Check if the group has already been solved
       if (!solvedCategories.includes(currentSolution.level)) {
         // Process the current group
-        setWordsTakenOut((prevWordsTakenOut) => [
-          ...prevWordsTakenOut,
-          ...currentSolution.words,
-        ]);
+        setGameWords((prevGameWords) =>
+          prevGameWords.filter(
+            (gameWord) => gameWord.level !== currentSolution.level
+          )
+        );
         setSolvedCategories((prevSolvedCategories) => [
           ...prevSolvedCategories,
           currentSolution.level,
@@ -132,10 +126,18 @@ const Connections = () => {
     let updatedWords = [];
 
     for (let i = 0; i < selectedGame.answers.length; i++) {
-      updatedWords = [...updatedWords, ...selectedGame.answers[i].words];
+      for (let w = 0; w < selectedGame.answers[i].words.length; w++) {
+        updatedWords = [
+          ...updatedWords,
+          {
+            level: selectedGame.answers[i].level,
+            word: selectedGame.answers[i].words[w],
+          },
+        ];
+      }
     }
-
     const shuffledWords = shuffleArray(updatedWords);
+
     setGameStart(true);
     setGameSolution(selectedGame);
 
@@ -190,28 +192,24 @@ const Connections = () => {
     const prevAttempts = [...previousSubmissions, [...wordsSelected]];
     setPreviousSubmissions(prevAttempts);
 
-    const result = checkIfCorrect(gameSolution, wordsSelected);
+    const result = checkIfCorrect(wordsSelected);
 
     let solutions;
 
     if (result.isCorrect) {
-      for (let i = 0; i < gameSolution.answers.length; i++) {
-        if (gameSolution.answers[i].group === result.correctCategory) {
-          solutions = [...solvedCategories, gameSolution.answers[i].level];
-
-          break;
-        }
-      }
       let newGameWords = differenceOfArrays(gameWords, wordsSelected);
 
       setGameWords(newGameWords);
       setWordsSelected([]);
-      setSolvedCategories(solutions);
+      setSolvedCategories((prevSolvedLevels) => [
+        ...prevSolvedLevels,
+        result.level,
+      ]);
       if (solvedCategories.length === 3) {
         setGameOver(true);
         setGameWon(true);
       }
-    } else if (result.isGuessOneAway) {
+    } else if (result.isOneGuessAway) {
       if (attemptsLeft === 1) {
         toast("YOU LOST", {
           position: "top-center",
@@ -397,6 +395,8 @@ const Connections = () => {
               open={gameOverModal}
               closeModal={closeModal}
               reset={handleReset}
+              gameType={"connections"}
+              guesses={previousSubmissions}
             />
           ) : (
             <></>

@@ -1,8 +1,8 @@
 export const DIFFICULTIES = {
-  0: "#f9df6d",
-  1: "#a0c35a",
-  2: "#b0c4ef",
-  3: "#ba81c5",
+  0: "--connections-level0",
+  1: "--connections-level1",
+  2: "--connections-level2",
+  3: "--connections-level3",
 };
 
 export const CONNECTION_GAMES = [
