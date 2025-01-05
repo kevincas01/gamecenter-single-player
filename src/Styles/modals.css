@@ -1,44 +1,116 @@
-
-
-
-.modal_container{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1040;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
+.modal_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
 }
 
-.modal{
-    position: absolute;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%, -50%);
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    background-color: white;
-    border-radius: 15px;
-    padding:10px;
-    width:500px;
-    height:400px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  width: 500px;
+  height: 400px;
 
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-
+  display: flex;
+  text-align: center;
+  flex-direction: column;
 }
 
-.close-modal{
-    color:black;
-    position: absolute;
-    right:10px;
-    top:10px;
-
+.close-modal {
+  color: black;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 @media screen and (max-width: 768px) {
-    .modal{
-        width:250px;
-    }
+  .modal {
+    width: 250px;
+  }
+}
+/* Grid container for guesses */
+.guesses-grid {
+  display: flex;
+
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  margin: 15px 0;
+}
+
+/* Row of guesses */
+.guess-row {
+  display: flex;
+  gap: 2px;
+}
+
+/* Individual cell */
+.wordle-guess-cell {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Color-coded styles */
+.wordle-guess-cell.correct {
+  background-color: var(--wordle-correct);
+  color: white;
+}
+
+.wordle-guess-cell.wrong-place {
+  background-color: var(--wordle-wrong-place);
+  color: black;
+}
+
+.wordle-guess-cell.wrong {
+  background-color: var(--wordle-wrong);
+  color: white;
+}
+
+.connections-guess-cell {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Color-coded styles */
+.connections-guess-cell.level0 {
+  background-color: var(--connections-level0);
+  color: white;
+}
+
+.connections-guess-cell.level1 {
+  background-color: var(--connections-level1);
+  color: black;
+}
+
+.connections-guess-cell.level2 {
+  background-color: var(--connections-level2);
+  color: white;
+}
+
+.connections-guess-cell.level3 {
+  background-color: var(--connections-level3);
+  color: white;
 }
