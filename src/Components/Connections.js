@@ -67,7 +67,6 @@ const Connections = () => {
       return;
     }
 
-    // extra delay for game won to allow confetti to show
     const modalDelay = gameWon ? 2000 : 4000;
     const delayModalOpen = window.setTimeout(() => {
       setGameOverModal(true);
@@ -389,6 +388,8 @@ const Connections = () => {
               open={gameOverModal}
               closeModal={closeModal}
               reset={handleReset}
+              gameType={"connections"}
+              guesses={previousSubmissions}
             />
           ) : gameOver && !gameWon ? (
             <GameLostModal
@@ -446,7 +447,6 @@ const Connections = () => {
         </>
       )}
 
-      <ToastContainer />
     </div>
   );
 };

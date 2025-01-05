@@ -7,6 +7,9 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Connections from './Components/Connections';
 import Wordle from './Components/Wordle';
 
+import { ToastContainer, toast, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function GameCenter() {
   const [currentCard, setCurrentCard] = useState(0);
 
@@ -79,6 +82,7 @@ function GameCenter() {
           ))}
           
         </div>
+        <ToastContainer />
       </div>
     </>
   );

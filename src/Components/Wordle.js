@@ -1,7 +1,6 @@
 import React from "react";
 
 import "../Styles/wordle.css";
-
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -121,7 +120,7 @@ const Wordle = () => {
     setLetterSetUsed({});
   };
 
-  const handleWordEnter = () => {
+  const handleWordEnter =() => {
     if (attemptNumber > 5) return;
     if (positionNumber < 5) {
       toast("Not enough letters", {
@@ -178,13 +177,10 @@ const Wordle = () => {
       currentGuessState.push(state)
 
       if (word[i] in newSet) {
-        if (newSet[word[i]] === "wrong-place") {
-          state =
-            word[i].toUpperCase() === correctWord[i].toUpperCase()
-              ? "correct"
-              : "wrong-place";
-          newSet[word[i]] = state;
+        if(word[i].toUpperCase() === correctWord[i].toUpperCase()){
+          newSet[word[i]] = "correct";
         }
+       
         continue;
       }
       newSet[word[i]] = state; // Update the state for the current letter
@@ -287,7 +283,10 @@ const Wordle = () => {
             <GameWonModal
               open={gameOverModal}
               closeModal={closeModal}
+              correctWord={correctWord}
               reset={handleReset}
+              guesses={boardGuessesState}
+              gameType={"wordle"}
             />
           ) : gameOver && !gameWon ? (
             <GameLostModal
@@ -318,7 +317,6 @@ const Wordle = () => {
         </BoardContext.Provider>
       )}
 
-      <ToastContainer />
     </div>
   );
 };
