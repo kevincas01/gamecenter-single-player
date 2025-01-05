@@ -118,11 +118,7 @@ const Connections = () => {
     };
   }, [gameOver]);
 
-  const startConnectionsGame = () => {
-    const index = Math.floor(Math.random() * CONNECTION_GAMES.length);
-
-    const selectedGame = CONNECTION_GAMES[index];
-
+  const makeGameWordsArray = (selectedGame) => {
     let updatedWords = [];
 
     for (let i = 0; i < selectedGame.answers.length; i++) {
@@ -136,7 +132,16 @@ const Connections = () => {
         ];
       }
     }
-    const shuffledWords = shuffleArray(updatedWords);
+    return updatedWords;
+  };
+
+  const startConnectionsGame = () => {
+    const index = Math.floor(Math.random() * CONNECTION_GAMES.length);
+
+    const selectedGame = CONNECTION_GAMES[index];
+
+    const gameWords = makeGameWordsArray(selectedGame);
+    const shuffledWords = shuffleArray(gameWords);
 
     setGameStart(true);
     setGameSolution(selectedGame);
@@ -297,13 +302,8 @@ const Connections = () => {
 
     const selectedGame = CONNECTION_GAMES[index];
 
-    let updatedWords = [];
-
-    for (let i = 0; i < selectedGame.answers.length; i++) {
-      updatedWords = [...updatedWords, ...selectedGame.answers[i].words];
-    }
-
-    const shuffledWords = shuffleArray(updatedWords);
+    const gameWords = makeGameWordsArray(selectedGame);
+    const shuffledWords = shuffleArray(gameWords);
 
     setGameSolution(selectedGame);
 
