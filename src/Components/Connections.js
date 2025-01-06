@@ -47,14 +47,14 @@ const Card = ({ word, selected, handleClick }) => {
     const container = cardContainerRef.current;
     const text = textRef.current;
     const containerWidth = container.offsetWidth;
-      
+
     if (!container || !text || text.offsetWidth < containerWidth) return;
 
     let min = 1;
     let max = 20;
     while (min <= max) {
       const mid = Math.floor((min + max) / 2);
-      text.style.fontSize = mid+"px";
+      text.style.fontSize = mid + "px";
       if (text.offsetWidth <= containerWidth) {
         min = mid + 1;
       } else {
@@ -170,32 +170,7 @@ const Connections = () => {
   const startConnectionsGame = () => {
     const index = Math.floor(Math.random() * CONNECTION_GAMES.length);
 
-    const selectedGame = {
-      id: 404,
-      date: "2024-07-19",
-      answers: [
-        {
-          level: 0,
-          group: "ROMANTIC PARTNER",
-          words: ["FLAME", "LOVER", "STEADY", "SWEETHEART"],
-        },
-        {
-          level: 1,
-          group: "INSULT",
-          words: ["BURN", "DIG", "JAB", "SLIGHT"],
-        },
-        {
-          level: 2,
-          group: "GAS PUMP OPTIONS",
-          words: ["DIESEL", "PLUS", "PREMIUM", "REGULAR"],
-        },
-        {
-          level: 3,
-          group: "___ TABLE",
-          words: ["COFFEE", "PERIODIC", "POOL", "WATER"],
-        },
-      ],
-    };
+    const selectedGame = CONNECTION_GAMES[index];
 
     const gameWords = makeGameWordsArray(selectedGame);
     const shuffledWords = shuffleArray(gameWords);
