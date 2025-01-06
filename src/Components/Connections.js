@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { CONNECTION_GAMES, DIFFICULTIES } from "../Data/connectionsData.js";
 
 import "../Styles/connections.css";
@@ -32,15 +32,48 @@ const SolvedCard = ({ solvedCategory }) => {
 };
 
 const Card = ({ word, selected, handleClick }) => {
+  const cardContainerRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    resizeText();
+    window.addEventListener("resize", resizeText);
+    return () => {
+      window.removeEventListener("resize", resizeText);
+    };
+  }, []);
+
+  const resizeText = () => {
+    const container = cardContainerRef.current;
+    const text = textRef.current;
+    const containerWidth = container.offsetWidth;
+      
+    if (!container || !text || text.offsetWidth < containerWidth) return;
+
+    let min = 1;
+    let max = 20;
+    while (min <= max) {
+      const mid = Math.floor((min + max) / 2);
+      text.style.fontSize = mid+"px";
+      if (text.offsetWidth <= containerWidth) {
+        min = mid + 1;
+      } else {
+        max = mid - 1;
+      }
+    }
+    text.style.fontSize = max + "px";
+  };
+
   return (
     <div
+      ref={cardContainerRef}
       className={`card ${selected ? "selected" : ""}`}
       style={{ fontSize: word.length > 6 ? "12px" : "16px" }}
       onClick={() => {
         handleClick();
       }}
     >
-      {word.word}
+      <span ref={textRef}>{word.word}</span>
     </div>
   );
 };
@@ -137,7 +170,32 @@ const Connections = () => {
   const startConnectionsGame = () => {
     const index = Math.floor(Math.random() * CONNECTION_GAMES.length);
 
-    const selectedGame = CONNECTION_GAMES[index];
+    const selectedGame = {
+      id: 404,
+      date: "2024-07-19",
+      answers: [
+        {
+          level: 0,
+          group: "ROMANTIC PARTNER",
+          words: ["FLAME", "LOVER", "STEADY", "SWEETHEART"],
+        },
+        {
+          level: 1,
+          group: "INSULT",
+          words: ["BURN", "DIG", "JAB", "SLIGHT"],
+        },
+        {
+          level: 2,
+          group: "GAS PUMP OPTIONS",
+          words: ["DIESEL", "PLUS", "PREMIUM", "REGULAR"],
+        },
+        {
+          level: 3,
+          group: "___ TABLE",
+          words: ["COFFEE", "PERIODIC", "POOL", "WATER"],
+        },
+      ],
+    };
 
     const gameWords = makeGameWordsArray(selectedGame);
     const shuffledWords = shuffleArray(gameWords);
@@ -446,7 +504,6 @@ const Connections = () => {
           )}
         </>
       )}
-
     </div>
   );
 };
