@@ -17,9 +17,9 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap:5px;
     
-    
-    width:650px;
+    max-width:650px;
     margin:auto;
 }
 
@@ -46,9 +46,8 @@
 .card{
     display: flex;
     justify-content: center;
+    text-align: center;
     align-items: center;
-    margin:4px;
-    padding: 0px;
     border: none;
     background-color: #efefe6;
     
@@ -107,8 +106,7 @@
     }
     .card{
         width:20%;
-        padding: 2px;
-        aspect-ratio: 1 / 1;
+       
     }
 
 
