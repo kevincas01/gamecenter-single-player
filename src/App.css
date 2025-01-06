@@ -67,35 +67,18 @@ button {
 }
 
 .game_start_container {
-  width: 500px;
+  width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-@media screen and (max-width: 500px) {
-  .game_start_container {
-    width: 90%;
-  }
-
-  h1 {
-    font-size: 2em;
-  }
-
-  .Toastify__toast-container {
-    position: absolute;
-    margin-top: 20px;
-    margin: auto;
-    left: 50%;
-    width: fit-content;
-    transform: translateX(-50%);
-    color: white;
-    border-radius: 20px;
-  }
+h1 {
+  font-size: 50px;
+  font-weight: bolder;
+  margin: 0;
 }
-
-/* button{all:unset} */
 .carousal-container {
   width: 100vw;
   height: 100vh;
@@ -106,9 +89,6 @@ button {
   justify-content: center;
 }
 
-.card-buttons {
-  width: 100%;
-}
 .card-button {
   border-radius: 50%;
   position: absolute;
@@ -139,10 +119,40 @@ button {
   margin-right: 100vw;
 }
 .carousal-card {
-  height: fit-content;
+  height: 100%;
   min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 #left,
 #right {
   font-size: 40px;
+}
+
+@media screen and (max-width: 500px) {
+
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .Toastify__toast-container {
+    position: absolute;
+    margin-top: 20px;
+    margin: auto;
+    left: 50%;
+    width: fit-content;
+    color: white;
+    border-radius: 20px;
+  }
+
+  .carousal-cards {
+    padding: 0px 25px;
+  }
+  #left,
+  #right {
+    font-size: 20px;
+  }
 }
