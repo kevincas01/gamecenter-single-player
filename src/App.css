@@ -131,8 +131,7 @@ h1 {
   font-size: 40px;
 }
 
-@media screen and (max-width: 500px) {
-
+@media screen and (max-width: 648px) {
 
   h1 {
     font-size: 3rem;
@@ -150,6 +149,9 @@ h1 {
 
   .carousal-cards {
     padding: 0px 25px;
+  }
+  .card-button{
+    padding: 5px;
   }
   #left,
   #right {
