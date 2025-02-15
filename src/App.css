@@ -60,7 +60,7 @@ button {
   border-bottom: 2px cyan solid;
 }
 .game_chosen {
-  width: 100%;
+  max-width: 700px;
 
   height: fit-content;
   flex-grow: 1;
