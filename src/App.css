@@ -134,7 +134,7 @@ h1 {
 @media screen and (max-width: 648px) {
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .Toastify__toast-container {
@@ -148,7 +148,7 @@ h1 {
   }
 
   .carousal-cards {
-    padding: 0px 25px;
+    padding: 0px 35px;
   }
   .card-button{
     padding: 5px;
